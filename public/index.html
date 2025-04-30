@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Express/HTML</title>
 </head>
+
 <body>
-    <form action="">
+    <form onsubmit="addProduct(event)">
         <label for="product">Product Name</label>
         <input name="productName" type="text" id="product">
         <button type="submit">Add Product</button>
     </form>
 </body>
+<script>
+    async function addProduct(event) {
+        event.preventDefault();
+        const productName = document.getElementById("product").value;
+        const response = await axios.post("http://localhost:5000", { name: productName });
+        console.log(response.data)
+        alert(response.data);
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"
+    integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </html>
